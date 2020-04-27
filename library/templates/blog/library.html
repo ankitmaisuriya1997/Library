@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block Libraryactive %} active {% endblock Libraryactive %}
+{% block title %} Your Libaray {% endblock title %}
+{% load humanize %}
+
+{% block body %}
+
+<div class="container my-4">
+  <h3> Your Personal Library Is Here </h3>
+
+{% for library in showLibrary %}
+  <div class="col p-4 d-flex flex-column position-static">
+    <strong class="d-inline-block mb-2 text-primary">Created By: {{library.user.username}} </strong>
+    <h3 class="mb-0">Library</h3>
+    <div class="mb-1 text-muted"> <span class="badge badge-secondary"> {{library.timeStamp | naturaltime}} </span> </div>
+    <p class="card-text mb-auto">
+      <ul>
+      <li> {{library.category}} </li>
+      <li> {{library.sub_category}} </li>
+      <li>{{library.personal_library}} </li>
+      <li>{{library.user.username}} </li>
+      </ul>
+    </p>
+    <div class="my-2">
+      <a href="/blog/createLibrary" role="button" class="btn btn-primary">Create Library</a>
+    </div>
+</div>
+
+
+{% endfor %}
+
+{% endblock body %}
